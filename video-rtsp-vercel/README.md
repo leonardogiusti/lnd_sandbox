@@ -112,12 +112,34 @@ npm run dev
 - Long-running MediaMTX process  
 - Child process spawning
 
-**Recommended platforms:**
-- Railway
-- Render
-- DigitalOcean Droplets
-- AWS EC2
-- Google Cloud VM
+### Railway Deployment (Recommended)
+
+1. **Create Railway Account**: Go to [railway.app](https://railway.app) and sign up
+2. **Connect GitHub**: Link your GitHub account to Railway
+3. **Deploy from GitHub**:
+   - Click "New Project" → "Deploy from GitHub Repo"
+   - Select `archetypeai/lnd_sandbox`
+   - Choose the `video-rtsp-vercel` directory
+   - Select the `remote_server` branch
+4. **Configure Environment**:
+   - Railway will automatically detect the Nixpacks configuration
+   - FFmpeg and MediaMTX will be installed automatically
+5. **Custom Domain** (Optional):
+   - Go to Settings → Domains
+   - Generate a Railway domain or add your custom domain
+
+**Railway Features:**
+- ✅ Automatic FFmpeg installation
+- ✅ Long-running process support
+- ✅ Built-in HTTPS
+- ✅ Easy scaling
+- ✅ Automatic deployments from GitHub
+
+### Alternative Platforms:
+- **Render**: Similar setup with Dockerfile
+- **DigitalOcean Droplets**: Manual server setup
+- **AWS EC2**: Full control VPS
+- **Google Cloud VM**: Enterprise-grade deployment
 
 ## Troubleshooting
 
