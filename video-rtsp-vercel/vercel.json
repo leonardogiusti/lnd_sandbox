@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "pages/api/**/*.ts": {
+      "maxDuration": 300
+    }
+  },
+  "build": {
+    "env": {
+      "FFMPEG_PATH": "/opt/vercel/.ffmpeg/ffmpeg",
+      "FFPROBE_PATH": "/opt/vercel/.ffmpeg/ffprobe"
+    }
+  }
+}

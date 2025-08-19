@@ -1,0 +1,13 @@
+# MediaMTX configuration for VLC compatibility
+rtsp: yes
+rtspAddress: :8554
+rtmp: no
+hls: no  
+webrtc: no
+
+rtspTransports: [udp, multicast, tcp]
+rtspEncryption: "no"
+
+paths:
+  ~^.*$:
+    source: publisher
