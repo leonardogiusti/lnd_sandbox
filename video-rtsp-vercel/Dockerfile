@@ -4,11 +4,13 @@ FROM node:18-alpine
 RUN apk add --no-cache \
     ffmpeg \
     wget \
-    bash
+    bash \
+    curl
 
 # Install MediaMTX
 RUN wget -O /tmp/mediamtx.tar.gz https://github.com/bluenviron/mediamtx/releases/download/v1.14.0/mediamtx_v1.14.0_linux_amd64.tar.gz && \
     tar -xzf /tmp/mediamtx.tar.gz -C /usr/local/bin && \
+    chmod +x /usr/local/bin/mediamtx && \
     rm /tmp/mediamtx.tar.gz
 
 WORKDIR /app
