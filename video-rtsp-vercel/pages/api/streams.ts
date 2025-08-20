@@ -5,11 +5,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     // Get current active stream
     const currentStream = getActiveStream();
+    
+    // Determine the host (Railway domain or localhost)
+    const host = req.headers.host || 'localhost:3000';
+    const isDevelopment = host.includes('localhost');
+    const rtspHost = isDevelopment ? 'localhost' : host.split(':')[0];
+    
     return res.status(200).json({
       activeStream: currentStream ? {
         filename: currentStream.filename,
         streamName: currentStream.streamName,
-        rtspUrl: `rtsp://localhost:8554/${currentStream.streamName}`
+        rtspUrl: `rtsp://${rtspHost}:8554/${currentStream.streamName}`
       } : null
     });
   }

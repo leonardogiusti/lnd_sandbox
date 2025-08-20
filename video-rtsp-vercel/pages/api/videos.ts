@@ -27,12 +27,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         const stats = fs.statSync(filePath);
         const streamName = filename.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
         
+        // Determine the host (Railway domain or localhost)
+        const host = req.headers.host || 'localhost:3000';
+        const isDevelopment = host.includes('localhost');
+        const rtspHost = isDevelopment ? 'localhost' : host.split(':')[0];
+        
         return {
           filename,
           streamName,
           size: stats.size,
           uploadDate: stats.ctime.toISOString(),
-          rtspUrl: `rtsp://localhost:8554/${streamName}`,
+          rtspUrl: `rtsp://${rtspHost}:8554/${streamName}`,
           isStreaming: false // Will be updated by frontend polling
         };
       })

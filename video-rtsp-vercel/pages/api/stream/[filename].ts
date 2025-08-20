@@ -37,12 +37,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         clearActiveStream();
       }
 
-      const rtspUrl = `rtsp://localhost:8554/${filename}`;
-      
       // Generate a simple stream name (only alphanumeric and underscore)
       const streamName = filename.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
-      const rtspPublishUrl = `rtsp://localhost:8554/${streamName}`;
-      const rtspPlayUrl = `rtsp://localhost:8554/${streamName}`;
+      
+      // Determine the host (Railway domain or localhost)
+      const host = req.headers.host || 'localhost:3000';
+      const isDevelopment = host.includes('localhost');
+      const rtspHost = isDevelopment ? 'localhost' : host.split(':')[0];
+      
+      const rtspPublishUrl = `rtsp://localhost:8554/${streamName}`; // Internal publishing
+      const rtspPlayUrl = `rtsp://${rtspHost}:8554/${streamName}`; // External access
       
       // FFmpeg args for looping RTSP streaming with VLC compatibility
       const ffmpegArgs = [
