@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: video-rtsp-vercel
+    runtime: node
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start:railway
+    plan: starter
+    rootDir: ./
+    region: oregon
+    envVars:
+      - key: NODE_ENV
+        value: production
+    # Render automatically exposes the main service port
+    # We need to open port 8554 for RTSP
+    
+# Note: You'll need to manually configure port 8554 in Render dashboard
+# or contact Render support for custom port configuration

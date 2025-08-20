@@ -46,7 +46,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const rtspHost = isDevelopment ? 'localhost' : host.split(':')[0];
       
       const rtspPublishUrl = `rtsp://localhost:8554/${streamName}`; // Internal publishing
-      const rtspPlayUrl = `rtsp://${rtspHost}:8554/${streamName}`; // External access
+      const rtspPlayUrl = `rtsp://${rtspHost}:8554/${streamName}`; // External RTSP access
       
       // FFmpeg args for looping RTSP streaming with VLC compatibility
       const ffmpegArgs = [

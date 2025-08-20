@@ -1,4 +1,4 @@
-# MediaMTX configuration for VLC compatibility
+# MediaMTX configuration for RTSP streaming on Render
 rtsp: yes
 rtspAddress: :8554
 rtmp: no
